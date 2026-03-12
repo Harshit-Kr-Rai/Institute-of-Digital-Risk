@@ -6,19 +6,6 @@
 
 </div>
 
-<p align="center">
-
-<a href="https://fantastic-duckanoo-3cc40e.netlify.app">
-  <img src="https://img.shields.io/badge/Live%20Demo-View%20Project-orange?style=for-the-badge">
-</a>
-
-<a href="https://github.com/Harshit-Kr-Rai/Institute-of-Digital-Risk">
-  <img src="https://img.shields.io/badge/GitHub-Repository-black?style=for-the-badge">
-</a>
-
-</p>
----
-
 # 📌 Project Overview
 
 This project is a submission for the **Institute of Digital Risk (IDR) Internship Assignment**.
@@ -208,3 +195,14 @@ https://github.com/Harshit-Kr-Rai
 
 </div>
 
+<p align="center">
+
+<a href="https://fantastic-duckanoo-3cc40e.netlify.app">
+  <img src="https://img.shields.io/badge/Live%20Demo-View%20Project-orange?style=for-the-badge">
+</a>
+
+<a href="https://github.com/Harshit-Kr-Rai/Institute-of-Digital-Risk">
+  <img src="https://img.shields.io/badge/GitHub-Repository-black?style=for-the-badge">
+</a>
+
+</p>

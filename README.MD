@@ -167,10 +167,7 @@ INDEX.HTML
 
 # 📝 Design Note
 
-The cube-inspired icon reflects **structure, resilience, and layered digital security**.
-Orange highlights **innovation and digital growth**, while black emphasizes **trust, security, and stability**.
-The minimal design ensures the logo remains **scalable, recognizable, and modern**.
-
+"The IDR logo utilizes an isometric, wireframe cube as its core geometric shape to symbolize digital structure, systemic resilience, and the multi-faceted nature of digital risk. The primary color palette of vibrant orange (#FF6B00) paired with contrasting black and white creates a modern, high-tech aesthetic that perfectly aligns with the institute's educational and industry-focused mission. The clean, sans-serif typography (Inter) ensures excellent legibility across all device sizes, maintaining a minimalist and highly professional appearance suitable for regulated corporate environments."
 ---
 
 # 👤 Author
@@ -199,3 +196,15 @@ https://github.com/Harshit-Kr-Rai
 ⭐ If you like this project, feel free to star the repository.
 
 </div>
+
+<p align="center">
+
+<a href="https://fantastic-duckanoo-3cc40e.netlify.app">
+  <img src="https://img.shields.io/badge/Live%20Demo-View%20Project-orange?style=for-the-badge">
+</a>
+
+<a href="https://github.com/Harshit-Kr-Rai/Institute-of-Digital-Risk">
+  <img src="https://img.shields.io/badge/GitHub-Repository-black?style=for-the-badge">
+</a>
+
+</p>

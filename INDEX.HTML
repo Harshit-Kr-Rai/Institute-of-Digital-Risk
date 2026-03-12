@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Institute of Digital Risk (IDR)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-orange: #FF6B00;
+            --primary-orange-hover: #e56000;
+            --bg-dark: #050505;
+            --surface-1: #111111;
+            --surface-2: #1a1a1a;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --text-main: #F3F4F6;
+            --text-muted: #9CA3AF;
+            --glow-color: rgba(255, 107, 0, 0.15);
+            --transition-fast: 0.2s ease;
+            --transition-smooth: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            
+            /* --- Typographic System --- */
+            --font-main: 'Inter', sans-serif;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- Scroll Reveal Animations (CSS Driven for Hero) --- */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-on-load {
+            animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Javascript Driven Scroll Reveals */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+
+        /* --- Global Layout --- */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        /* --- Typography --- */
+        h1, h2, h3, h4 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+            color: #FFFFFF;
+        }
+
+        .tag {
+            font-family: var(--font-mono);
+            color: var(--primary-orange);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            display: inline-flex; /* Fix for structural expanding */
+            align-items: center;
+            gap: 12px;
+        }
+
+        .tag::before {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 8px;
+            background: var(--primary-orange);
+            border-radius: 50%;
+        }
+
+        /* --- Navigation --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition-smooth);
+        }
+
+        header.scrolled {
+            padding: 5px 0;
+            background: rgba(5, 5, 5, 0.98);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #FFFFFF;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.4rem;
+            letter-spacing: -0.5px;
+            z-index: 1001;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-family: var(--font-main);
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition-fast);
+        }
+
+        .nav-links a:hover {
+            color: #FFFFFF;
+        }
+
+        /* --- Buttons --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 36px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-family: var(--font-main);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary {
+            background: var(--primary-orange);
+            color: #FFFFFF;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-orange-hover);
+            box-shadow: 0 10px 30px var(--glow-color);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #FFFFFF;
+            border-color: var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--surface-2);
+            border-color: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .nav-cta {
+            padding: 10px 24px;
+            font-size: 0.85rem;
+        }
+
+        /* --- Hero Section --- */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-top: 100px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(255, 107, 0, 0.08) 0%, rgba(5,5,5,0) 70%);
+            z-index: -1;
+            border-radius: 50%;
+            filter: blur(60px);
+            pointer-events: none;
+        }
+
+        .hero-bg-2 {
+            position: absolute;
+            bottom: -10%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, rgba(5,5,5,0) 70%);
+            z-index: -1;
+            border-radius: 50%;
+            filter: blur(60px);
+            pointer-events: none;
+        }
+
+        .grid-pattern {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.3;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 850px;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            margin-bottom: 30px;
+            background: linear-gradient(180deg, #FFFFFF 0%, #A0A0A0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.05;
+        }
+
+        .hero-content p {
+            font-size: clamp(1.1rem, 2vw, 1.35rem);
+            color: var(--text-muted);
+            max-width: 650px;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        /* --- About Section --- */
+        #about {
+            border-top: 1px solid var(--border-color);
+            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--surface-1) 100%);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .about-grid h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+        }
+
+        .about-text p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            font-weight: 300;
+        }
+
+        .highlight-text {
+            font-family: var(--font-display);
+            color: #FFFFFF;
+            font-weight: 500;
+            border-left: 2px solid var(--primary-orange);
+            padding-left: 20px;
+            margin: 30px 0;
+            font-size: 1.4rem;
+            letter-spacing: -0.02em;
+        }
+
+        /* --- Services Section --- */
+        #services {
+            background-color: var(--surface-1);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--surface-2);
+            border: 1px solid var(--border-color);
+            padding: 50px 40px;
+            border-radius: 8px;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: inherit;
+            box-shadow: inset 0 0 0 1px var(--primary-orange);
+            opacity: 0;
+            transition: var(--transition-smooth);
+            pointer-events: none;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            background: #1e1e1e;
+        }
+
+        .service-card:hover::after {
+            opacity: 0.3;
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 107, 0, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-orange);
+            margin-bottom: 10px;
+        }
+
+        .service-card h3 {
+            font-size: 1.75rem;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        /* --- Bespoke Pipeline Timeline --- */
+        .pipeline-wrapper {
+            margin-top: 100px;
+            padding-top: 60px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .pipeline-wrapper h3 {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2rem;
+        }
+
+        .pipeline {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .pipeline::before {
+            content: '';
+            position: absolute;
+            top: 24px;
+            left: 50px;
+            right: 50px;
+            height: 2px;
+            background: var(--border-color);
+            z-index: 1;
+        }
+
+        .pipeline-step {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            width: 25%;
+            padding: 0 15px;
+        }
+
+        .step-dot {
+            font-family: var(--font-mono);
+            font-size: 1.1rem;
+            width: 50px;
+            height: 50px;
+            background: var(--surface-2);
+            border: 2px solid var(--border-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-weight: 700;
+            color: var(--text-muted);
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .pipeline-step:hover .step-dot {
+            border-color: var(--primary-orange);
+            color: var(--primary-orange);
+            box-shadow: 0 0 20px var(--glow-color);
+            background: var(--bg-dark);
+        }
+
+        .pipeline-step h4 {
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+        }
+
+        .pipeline-step p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* --- Community Section --- */
+        #community {
+            background-color: var(--bg-dark);
+        }
+
+        .community-banner {
+            background: var(--surface-1);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 80px 5%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .community-banner::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at center, rgba(255,107,0,0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .community-banner h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 24px;
+        }
+
+        .community-banner p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+
+        /* --- Contact Section --- */
+        #contact {
+            background-color: var(--surface-1);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .form-box {
+            background: var(--surface-2);
+            padding: 50px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .input-group {
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 16px;
+            background: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            color: #FFFFFF;
+            font-family: var(--font-main);
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-orange);
+            box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
+        }
+
+        /* --- Mobile Menu & Responsive --- */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: #FFFFFF;
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        @media (max-width: 992px) {
+            .about-grid, .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .pipeline::before { display: none; }
+            .pipeline { flex-direction: column; gap: 40px; }
+            .pipeline-step { width: 100%; display: flex; flex-direction: column; align-items: center; text-align: center; }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn { display: block; }
+
+            .nav-links {
+                position: fixed;
+                top: 0; right: -100%;
+                width: 100%; height: 100vh;
+                background: rgba(5, 5, 5, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                justify-content: center;
+                gap: 40px;
+                transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            .nav-links.active { right: 0; }
+            .nav-links a { font-size: 1.5rem; font-weight: 600; font-family: var(--font-display); }
+            .nav-cta { font-size: 1.2rem; width: 80%; padding: 20px; font-family: var(--font-main); text-align: center; }
+
+            section { padding: 80px 0; }
+            #hero { padding-top: 140px; text-align: center; align-items: center; }
+            .hero-buttons { justify-content: center; flex-direction: column; width: 100%; }
+            .hero-buttons .btn { width: 100%; }
+            .form-box { padding: 30px 20px; }
+            .community-banner { padding: 60px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="main-header">
+        <nav class="container">
+            <a href="#" class="logo-container">
+                <svg class="logo-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 10 L90 30 L90 70 L50 90 L10 70 L10 30 Z" stroke="#FF6B00" stroke-width="6" fill="transparent"/>
+                    <path d="M50 10 L50 50 L90 70" stroke="#FF6B00" stroke-width="6" fill="transparent"/>
+                    <path d="M10 30 L50 50 L50 90" stroke="#FF6B00" stroke-width="6" fill="transparent"/>
+                    <circle cx="50" cy="50" r="8" fill="#FFFFFF"/>
+                </svg>
+                <span>IDR</span>
+            </a>
+            
+            <button class="mobile-menu-btn" aria-label="Toggle menu" id="menu-toggle">☰</button>
+
+            <ul class="nav-links" id="nav-menu">
+                <li><a href="#about" class="nav-item">About</a></li>
+                <li><a href="#services" class="nav-item">Services</a></li>
+                <li><a href="#community" class="nav-item">Community</a></li>
+                <li><a href="#contact" class="nav-item">Contact</a></li>
+                <li><a href="#contact" class="btn btn-primary nav-cta nav-item">Join Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- 1. Hero Section -->
+        <section id="hero">
+            <div class="grid-pattern"></div>
+            <div class="hero-bg"></div>
+            <div class="hero-bg-2"></div>
+            
+            <!-- Using pure CSS animation class 'animate-on-load' to guarantee visibility -->
+            <div class="container hero-content animate-on-load">
+                <span class="tag">Industry-Led Training & Deployment</span>
+                <h1>Advancing the Future<br>of Digital Risk</h1>
+                <p>Equipping practitioners with the skills to secure high-consequence environments, combining rigorous academic insight with real-world industry practice.</p>
+                <div class="hero-buttons">
+                    <a href="#services" class="btn btn-primary">Explore Programs</a>
+                    <a href="#contact" class="btn btn-secondary">Hire Talent</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. About IDR -->
+        <section id="about">
+            <div class="container about-grid">
+                <div class="reveal">
+                    <span class="tag">Who We Are</span>
+                    <h2>The Nexus of Academic Insight & Industry Practice.</h2>
+                </div>
+                <div class="about-text reveal delay-1">
+                    <p>The Institute of Digital Risk (IDR) is a specialized training and deployment hub. We are dedicated to preparing practitioners for critical cyber, digital, and technology risk roles within heavily regulated, high-consequence environments.</p>
+                    
+                    <div class="highlight-text">
+                        Bridging the gap between cutting-edge academic research and the operational realities of the digital risk industry.
+                    </div>
+
+                    <p>Through strategic UK university partnerships, our programs ensure that theoretical knowledge is directly translated into practical, deployable skills for the modern threat landscape.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Service pillars / model -->
+        <section id="services">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="tag">Our Core Model</span>
+                    <h2>Service Pillars</h2>
+                </div>
+                
+                <div class="services-grid">
+                    <div class="service-card reveal">
+                        <div class="card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                        </div>
+                        <h3>Academy</h3>
+                        <p>Rigorous, industry-aligned training and immersive bootcamps designed for students and early-career professionals seeking specialized upskilling in high-demand digital risk roles.</p>
+                    </div>
+
+                    <div class="service-card reveal delay-1">
+                        <div class="card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                        </div>
+                        <h3>Innovation & Incubation</h3>
+                        <p>A forward-looking lab developing intellectual property, incubating future predictive risk models, and pioneering robust governance frameworks for secure Artificial Intelligence.</p>
+                    </div>
+
+                    <div class="service-card reveal delay-2">
+                        <div class="card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        </div>
+                        <h3>Advisory Services</h3>
+                        <p>Direct organizational support providing practical expertise to successfully implement, manage, and audit complex compliance frameworks including NIST, ISO 27001, and NIS2.</p>
+                    </div>
+                </div>
+
+                <div class="pipeline-wrapper reveal">
+                    <h3>The IDR Deployment Pipeline</h3>
+                    <div class="pipeline">
+                        <div class="pipeline-step">
+                            <div class="step-dot">01</div>
+                            <h4>Train</h4>
+                            <p>Skill Acquisition via Academy</p>
+                        </div>
+                        <div class="pipeline-step">
+                            <div class="step-dot">02</div>
+                            <h4>Hire</h4>
+                            <p>Targeted Talent Matching</p>
+                        </div>
+                        <div class="pipeline-step">
+                            <div class="step-dot">03</div>
+                            <h4>Innovate</h4>
+                            <p>IP & Model Incubation</p>
+                        </div>
+                        <div class="pipeline-step">
+                            <div class="step-dot">04</div>
+                            <h4>Deploy</h4>
+                            <p>Industry Integration</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Community / who we serve -->
+        <section id="community">
+            <div class="container">
+                <div class="community-banner reveal">
+                    <span class="tag">Who We Serve</span>
+                    <h2>Our Expanding Community</h2>
+                    <p>We actively support a growing network of university students, early-career professionals, and experienced practitioners across <strong>financial services</strong> and <strong>critical national infrastructure</strong> who are committed to mastering digital and cyber risk.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Contact / Call to action -->
+        <section id="contact">
+            <div class="container contact-grid">
+                <div class="reveal">
+                    <span class="tag">Get in Touch</span>
+                    <h2>Ready to Secure the Future?</h2>
+                    <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: 20px; max-width: 400px;">Whether you are an organization looking to hire vetted talent, or a professional aiming to upskill, register your interest below.</p>
+                </div>
+                
+                <div class="form-box reveal delay-1">
+                    <form id="idrForm">
+                        <div class="input-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" placeholder="Jane Doe" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="email">Work Email</label>
+                            <input type="email" id="email" placeholder="jane@company.com" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="message">How can we help?</label>
+                            <textarea id="message" rows="4" placeholder="I am interested in..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Inquiry</button>
+                    </form>
+                    
+                    <div id="thankYou" style="display:none; text-align: center; padding: 40px 20px;">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--primary-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 20px;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        <h3 style="margin-bottom: 10px;">Inquiry Received</h3>
+                        <p style="color: var(--text-muted);">Thank you. Our team will be in touch shortly.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="padding: 60px 0; border-top: 1px solid var(--border-color); text-align: center; background: var(--bg-dark);">
+        <div class="container">
+            <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+                <svg width="24" height="24" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 10 L90 30 L90 70 L50 90 L10 70 L10 30 Z" stroke="#FF6B00" stroke-width="6" fill="transparent"/>
+                    <circle cx="50" cy="50" r="8" fill="#FFFFFF"/>
+                </svg>
+            </div>
+            <p style="font-family: var(--font-mono); color: var(--text-muted); font-size: 0.8rem; letter-spacing: 0.05em;">&copy; 2026 Institute of Digital Risk. UK University Partnership.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Use DOMContentLoaded instead of window.onload to ensure early, reliable execution
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- Form Handling ---
+            document.getElementById('idrForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                this.style.display = 'none';
+                document.getElementById('thankYou').style.display = 'block';
+            });
+
+            // --- Mobile Menu Toggle ---
+            const menuBtn = document.getElementById('menu-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            const navItems = document.querySelectorAll('.nav-item');
+            const header = document.getElementById('main-header');
+
+            menuBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                menuBtn.innerHTML = navMenu.classList.contains('active') ? '&#10005;' : '&#9776;';
+            });
+
+            navItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                    menuBtn.innerHTML = '&#9776;';
+                });
+            });
+
+            // --- Scroll Effects (Header Shrink) ---
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // --- Robust Intersection Observer for Scroll Reveals ---
+            const revealElements = document.querySelectorAll('.reveal');
+
+            // Lowered threshold to 0.05 so things appear earlier, preventing "blank space" on weird aspect ratios
+            const revealOptions = {
+                threshold: 0.05,
+                rootMargin: "0px 0px -20px 0px"
+            };
+
+            if ('IntersectionObserver' in window) {
+                const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('active');
+                            observer.unobserve(entry.target); 
+                        }
+                    });
+                }, revealOptions);
+
+                revealElements.forEach(el => {
+                    revealOnScroll.observe(el);
+                });
+            } else {
+                // Absolute Fallback for very old browsers: just show everything immediately
+                revealElements.forEach(el => el.classList.add('active'));
+            }
+        });
+    </script>
+</body>
+</html>

@@ -52,19 +52,30 @@ https://github.com/Harshit-Kr-Rai/Institute-of-Digital-Risk
 
 # 🎨 Logo Design Concept
 
-The logo uses a **geometric cube structure** to represent:
+## 🎨 Logo Design Explanation
 
-* Structured digital systems
-* Risk management layers
-* Resilience in modern technology environments
+The **IDR logo** utilizes an **isometric wireframe cube** as its core geometric element.
+This cube represents **digital structure, systemic resilience, and the multi-layered nature of digital risk management**.
+
+The color palette combines:
+
+* **Vibrant Orange (#FF6B00)** → Innovation and digital technology
+* **Black (#111111)** → Security, stability, and trust
+* **White (#FFFFFF)** → Clarity and simplicity
+
+This combination creates a **modern, high-tech visual identity** that aligns with the institute’s **educational and industry-focused mission**.
+
+The typography uses **Inter**, a clean sans-serif typeface designed for digital interfaces.
+It ensures **excellent readability across all devices** while maintaining a **minimal and professional appearance suitable for regulated corporate environments**.
+
 
 ### Color Palette
 
 | Color     | Hex       | Meaning                 |
 | --------- | --------- | ----------------------- |
 | 🟧 Orange | `#FF6B00` | Innovation & Technology |
-| ⚫ Black   | `#111111` | Security & Stability    |
-| ⚪ White   | `#FFFFFF` | Simplicity & Clarity    |
+| ⚫ Black  | `#111111` | Security & Stability    |
+| ⚪ White  | `#FFFFFF` | Simplicity & Clarity    |
 
 The **minimal geometric design ensures clarity at small sizes**, making it suitable for **favicons, headers, and branding**.
 
@@ -167,7 +178,13 @@ INDEX.HTML
 
 # 📝 Design Note
 
-"The IDR logo utilizes an isometric, wireframe cube as its core geometric shape to symbolize digital structure, systemic resilience, and the multi-faceted nature of digital risk. The primary color palette of vibrant orange (#FF6B00) paired with contrasting black and white creates a modern, high-tech aesthetic that perfectly aligns with the institute's educational and industry-focused mission. The clean, sans-serif typography (Inter) ensures excellent legibility across all device sizes, maintaining a minimalist and highly professional appearance suitable for regulated corporate environments."
+## 🎨 Logo Design Explanation
+
+The **IDR logo** features an **isometric wireframe cube** as its central geometric form, representing **digital structure, systemic resilience, and the multi-layered nature of digital risk**.
+
+Its color palette combines **vibrant orange (#FF6B00)** with **black and white**, creating a **modern, high-tech aesthetic** that aligns with the institute’s **educational and industry-focused mission**.
+
+The design uses the **Inter sans-serif typeface**, ensuring **excellent readability across all device sizes** while maintaining a **minimal and professional appearance suitable for corporate environments**.
 ---
 
 # 👤 Author

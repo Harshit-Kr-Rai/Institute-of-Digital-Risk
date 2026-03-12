@@ -4,16 +4,6 @@
 
 # Institute of Digital Risk (IDR)
 
-### Logo Design + Responsive Homepage
-
-<p>
-
-<img src="https://img.shields.io/badge/HTML5-Structure-FF6B00?style=for-the-badge">
-<img src="https://img.shields.io/badge/Design-Minimal-111111?style=for-the-badge">
-<img src="https://img.shields.io/badge/Responsive-Mobile%20Ready-FF6B00?style=for-the-badge">
-
-</p>
-
 </div>
 
 <p align="center">

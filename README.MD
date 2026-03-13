@@ -195,14 +195,20 @@ https://github.com/Harshit-Kr-Rai
 
 </div>
 
-<p align="center">
+<div align="center">
+
+## 🚀 Try the Project
+
+Experience the **Institute of Digital Risk homepage** and explore the source code.
+
+<br>
 
 <a href="https://fantastic-duckanoo-3cc40e.netlify.app">
-  <img src="https://img.shields.io/badge/Live%20Demo-View%20Project-orange?style=for-the-badge">
+  <img src="https://img.shields.io/badge/🚀%20Live%20Demo-FF6B00?style=for-the-badge&logo=netlify&logoColor=white">
 </a>
 
 <a href="https://github.com/Harshit-Kr-Rai/Institute-of-Digital-Risk">
-  <img src="https://img.shields.io/badge/GitHub-Repository-black?style=for-the-badge">
+  <img src="https://img.shields.io/badge/💻%20Source%20Code-111111?style=for-the-badge&logo=github&logoColor=white">
 </a>
 
-</p>
+</div>
